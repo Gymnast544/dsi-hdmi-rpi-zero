@@ -1,0 +1,15 @@
+# Build artifacts
+objs/
+*.o
+*.d
+*.elf
+*.list
+*.bin
+
+# Release (optional: remove to track pre-built kernel)
+# release/kernel7.img
+
+# Editor
+*.swp
+*~
+.DS_Store
