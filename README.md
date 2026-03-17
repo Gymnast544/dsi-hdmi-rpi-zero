@@ -8,11 +8,9 @@ Bare-metal Raspberry Pi Zero firmware that captures video from a Nintendo DSi sc
 
 ## Context
 
-This is a **CS140e (Stanford) final project** repository.
-
-- **About this repo**: it was generated/packaged with the help of AI to clean up the code layout/style and to make it easy to build + run as a standalone release repo.
+- **About this repo**: it was generated/packaged with the help of AI to clean up the code layout/style and to make it easy to build + run as a standalone release repo - if there are any issues building please flag them as this software is tested/working.
 - **Support**: if the build or SD-card boot process doesn’t work on your setup, please open an issue with your OS/toolchain version and the full build output.
-- **Credit**: this project heavily relies on the excellent bare-metal Raspberry Pi infrastructure provided by the **CS140e staff** (vendored here as `libpi/`, plus boot/firmware conventions). Any mistakes in integration are on this repo, not on the staff code.
+- **Credit**: this project heavily relies on the excellent bare-metal Raspberry Pi infrastructure provided by the **CS140e staff** (vendored here as `libpi/`, plus boot/firmware conventions). Any mistakes are in copying over the files to this separate repo.
 
 ## Features
 
@@ -32,6 +30,14 @@ This is a **CS140e (Stanford) final project** repository.
 - **Raspberry Pi Zero W**
 
 Only these boards are supported (BCM2835). Pi Zero 2, Pi 1 Model B+, and other variants are not tested.
+
+## Bill of Materials
+
+- **Raspberry Pi Zero / Zero W**
+- **microSD card** (FAT32 for the boot partition)
+- **Nintendo DSi** (to tap the LCD signals)
+- **mini-HDMI → HDMI adapter/cable** (Pi Zero uses mini-HDMI)
+- **USB power cable/supply** (and optionally a **USB OTG adapter** if you want peripherals for debugging)
 
 ## Quick Start — SD Card (No Build)
 
@@ -67,7 +73,7 @@ In addition, **`LS`**, **`GSP`**, and **`DCLK`** are labeled on the image.
 
 ### Example installation
 
-`assets/hardware_installed.jpeg` shows an example of what a **bottom-screen** installation can look like. (For top screen capture, you’ll solder to different test points on the DSi motherboard, but the overall approach is the same.)
+`assets/hardware_installed.jpeg` shows an example of what a **bottom-screen** installation can look like. (For top screen capture, you’ll solder to different test points on the DSi motherboard, but the overall approach is the same.) This is super messy, and there's a lot of room for improvement and cleanliness on the hardware side.
 
 ![Example bottom-screen installation wiring](assets/hardware_installed.jpeg)
 
@@ -167,7 +173,7 @@ dsi-hdmi-rpi-zero/
 
 ## License
 
-MIT (or as per cs140e course materials).
+MIT.
 
 ## Next steps
 
