@@ -4,25 +4,13 @@ This folder contains the built kernel for Raspberry Pi Zero. To run without buil
 
 ## Quick Setup (pre-built)
 
-1. **Get Raspberry Pi firmware files** (bootcode.bin, start.elf, config.txt):
-   - Download from https://github.com/raspberrypi/firmware/raw/master/boot/
-   - Or copy from any working Pi SD card
+1. **Format an SD card** as FAT32 (first partition)
 
-2. **Format an SD card** as FAT32 (first partition)
+2. **Copy all files** from this folder to the SD card root:
+   - `kernel7.img` — the DSi capture firmware
+   - `bootcode.bin`, `start.elf`, `config.txt` — Pi boot files (included)
 
-3. **Copy these files** to the SD card root:
-   - `kernel7.img` (from this folder — the built program)
-   - `bootcode.bin`
-   - `start.elf`
-   - `config.txt`
-
-4. **Optional config.txt** for Pi Zero — add if needed:
-   ```
-   kernel=kernel7.img
-   arm_64bit=0
-   ```
-
-5. Insert SD card into Pi Zero, connect DSi + HDMI, power on.
+3. Insert SD card into Pi Zero, connect DSi + HDMI, power on.
 
 ## File Locations
 

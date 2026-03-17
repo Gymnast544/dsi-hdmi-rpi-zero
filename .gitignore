@@ -6,6 +6,12 @@ objs/
 *.list
 *.bin
 
+# Vendored libpi build artifacts
+libpi/objs/
+libpi/staff-start.o
+libpi/libpi.a
+libpi/*.list
+
 # Release (optional: remove to track pre-built kernel)
 # release/kernel7.img
 

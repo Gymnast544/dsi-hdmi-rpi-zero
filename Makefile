@@ -15,23 +15,21 @@ CFLAGS_EXTRA += -DSD_BOOT
 RUN = 0
 endif
 
-# Path to cs140e course repo (contains libpi). Set via env or: make CS140E_2026_PATH=/path/to/cs140e
-# Default: sibling directory ../cs140e-26win
-ifeq ($(CS140E_2026_PATH),)
-CS140E_2026_PATH := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../cs140e-26win)
-endif
+# Repo root (libpi is vendored in ./libpi)
+REPO_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+CS140E_2026_PATH := $(REPO_ROOT)
 export CS140E_2026_PATH
 
-# Staff object files for memory allocation
-L = $(CS140E_2026_PATH)/libpi/staff-objs
+# Staff object files for memory allocation (vendored in libpi)
+L = $(REPO_ROOT)/libpi/staff-objs
 STAFF_OBJS += $(L)/staff-kmalloc.o
 
 # Pull in libgcc for division
-LIBGCC  = $(shell $(CC) -print-libgcc-file-name)
+LIBGCC  = $(shell arm-none-eabi-gcc -print-libgcc-file-name)
 LIB_POST += $(LIBGCC)
 
-# Use course build system
-include $(CS140E_2026_PATH)/libpi/mk/Makefile.robust-v2
+# Use vendored libpi build system
+include $(REPO_ROOT)/libpi/mk/Makefile.robust-v2
 
 # --- Release / SD card targets ---
 RELEASE_DIR := release
