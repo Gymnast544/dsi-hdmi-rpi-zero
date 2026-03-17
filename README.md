@@ -4,7 +4,7 @@ Bare-metal Raspberry Pi Zero firmware that captures video from a Nintendo DSi sc
 
 ## Demo
 
-[YouTube Short demo](https://www.youtube.com/shorts/CB0fu9gu2rI)
+[YouTube demo](https://www.youtube.com/shorts/CB0fu9gu2rI)
 
 ## Context
 
@@ -64,6 +64,12 @@ In addition, **`LS`**, **`GSP`**, and **`DCLK`** are labeled on the image.
 
 - **Ground**: `VGND` near the charging port works well for ground.
 - **Optional DSi power from the Pi**: you can connect **5V** to **`VIN`** (also near the charging port) if you want the Pi to power/charge the DSi.
+
+### Example installation
+
+`assets/hardware_installed.jpeg` shows an example of what a **bottom-screen** installation can look like. (For top screen capture, you’ll solder to different test points on the DSi motherboard, but the overall approach is the same.)
+
+![Example bottom-screen installation wiring](assets/hardware_installed.jpeg)
 
 
 ### Pinout
@@ -151,3 +157,10 @@ dsi-hdmi-rpi-zero/
 ## License
 
 MIT (or as per cs140e course materials).
+
+## Next steps
+
+- **Hardware installation + packaging guide**: write up a full build guide including wiring, a flex PCB option, and packaging (e.g., a 3D-printed shell).
+- **Raspberry Pi Zero 2 W support**: add support for Pi Zero 2 W to increase FPS and (hopefully) reduce artifacting.
+
+I probably won’t have time to execute all of these myself, but I’d love to be a resource if you want to take any of them on.
