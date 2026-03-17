@@ -2,6 +2,10 @@
 
 Bare-metal Raspberry Pi Zero firmware that captures video from a Nintendo DSi top screen and outputs it via HDMI.
 
+## Demo
+
+[YouTube Short demo](https://www.youtube.com/shorts/CB0fu9gu2rI)
+
 ## Context
 
 This is a **CS140e (Stanford) final project** repository.
