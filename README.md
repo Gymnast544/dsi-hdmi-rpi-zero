@@ -1,6 +1,6 @@
 # DSi HDMI — Nintendo DSi Video Output for Raspberry Pi Zero
 
-Bare-metal Raspberry Pi Zero firmware that captures video from a Nintendo DSi top screen and outputs it via HDMI.
+Bare-metal Raspberry Pi Zero firmware that captures video from a Nintendo DSi screen (top or bottom) and outputs it via HDMI.
 
 ## Demo
 
@@ -21,12 +21,24 @@ This is a **CS140e (Stanford) final project** repository.
 - DMA-based GPIO sampling
 - MMU + cache for performance
 
+## Known limitations
+
+- **Artifacting**: due to Raspberry Pi Zero capture limits, some lines may be consistently copied from the line directly above. This is generally minor - and not easily noticeable unless you look for it specifically.
+- **Performance**: runs at ~**24 FPS** on a Pi Zero.
+
 ## Supported Boards
 
 - **Raspberry Pi Zero**
 - **Raspberry Pi Zero W**
 
 Only these boards are supported (BCM2835). Pi Zero 2, Pi 1 Model B+, and other variants are not tested.
+
+## Quick Start — SD Card (No Build)
+
+1. Copy all files from the `release/` folder to a FAT32 SD card (or download from [releases](https://github.com/Gymnast544/dsi-hdmi-rpi-zero/releases)).
+2. Boot the Pi Zero.
+
+See [release/README.md](release/README.md) for detailed SD card setup.
 
 ## Hardware Installation
 
@@ -53,14 +65,10 @@ In addition, **`LS`**, **`GSP`**, and **`DCLK`** are labeled on the image.
 - **Ground**: `VGND` near the charging port works well for ground.
 - **Optional DSi power from the Pi**: you can connect **5V** to **`VIN`** (also near the charging port) if you want the Pi to power/charge the DSi.
 
-### Known limitations (artifacting / performance)
-
-- **Artifacting**: due to Raspberry Pi Zero capture limits, some lines may be consistently copied from the line directly above.
-- **Performance**: runs at ~**24 FPS** on a Pi Zero and is not perfectly pixel-accurate. The pixel differences are usually subtle unless you’re looking for them.
 
 ### Pinout
 
-GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserved for UART TX/RX.
+GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserved for UART TX/RX, which was mainly used for testing/development.
 
 > **Note:** Pin 31 (GPIO 6) is physically wired to **LS** (line sync) on the DSi. The code refers to this signal as GCK — they are the same signal.
 
@@ -82,7 +90,7 @@ GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserve
 | Pin 24 | GPIO 8  | R[1]        |
 | Pin 26 | GPIO 7  | R[0]        |
 | Pin 29 | GPIO 5  | GSP         |
-| Pin 31 | GPIO 6  | LS (= GCK in code) |
+| Pin 31 | GPIO 6  | LS          |
 | Pin 32 | GPIO 12 | R[5]        |
 | Pin 33 | GPIO 13 | *(spare)*   |
 | Pin 35 | GPIO 19 | G[3]        |
@@ -91,20 +99,7 @@ GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserve
 | Pin 38 | GPIO 20 | G[4]        |
 | Pin 40 | GPIO 21 | G[5]        |
 
-### Pixel decode (from GPLEV0 sample)
 
-```c
-uint8_t r = ((cur >>  7) & 0x3F) << 2;   // GPIO 7-12
-uint8_t g = ((cur >> 16) & 0x3F) << 2;   // GPIO 16-21
-uint8_t b = ((cur >> 22) & 0x3F) << 2;   // GPIO 22-27
-```
-
-## Quick Start — SD Card (No Build)
-
-1. Copy all files from the `release/` folder to a FAT32 SD card (or download from [releases](https://github.com/Gymnast544/dsi-hdmi-rpi-zero/releases)).
-2. Boot the Pi Zero.
-
-See [release/README.md](release/README.md) for detailed SD card setup.
 
 ## Building from Source
 
