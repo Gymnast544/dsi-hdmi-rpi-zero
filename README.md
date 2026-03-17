@@ -76,6 +76,12 @@ In addition, **`LS`**, **`GSP`**, and **`DCLK`** are labeled on the image.
 
 GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserved for UART TX/RX, which was mainly used for testing/development.
 
+`assets/rpi pinout.png` is a helpful reference for the Raspberry Pi header orientation/pin numbering.
+
+![Raspberry Pi GPIO header orientation reference](assets/rpi%20pinout.png)
+
+Source: [GPIO Pinout Orientation Raspberry Pi Zero W (Stack Exchange)](https://raspberrypi.stackexchange.com/questions/83610/gpio-pinout-orientation-raspberry-pi-zero-w)
+
 > **Note:** Pin 31 (GPIO 6) is physically wired to **LS** (line sync) on the DSi. The code refers to this signal as GCK — they are the same signal.
 
 | Physical Pin | BCM GPIO | DSi Signal  |
