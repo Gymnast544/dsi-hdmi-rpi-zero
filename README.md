@@ -26,6 +26,34 @@ Only these boards are supported (BCM2835). Pi Zero 2, Pi 1 Model B+, and other v
 
 ## Hardware Installation
 
+### DSi motherboard test points
+
+`assets/Twl_back.jpg` is a photo of the DSi motherboard (back side) with the relevant test points labeled.
+
+![Nintendo DSi motherboard test points](assets/Twl_back.jpg)
+
+Image credit: [DSiBrew — File:Twl_back.jpg](https://dsibrew.org/wiki/File:Twl_back.jpg)
+
+#### Color signal label format
+
+The labeled color test points follow the format **`LD<C><S><B>`**:
+
+- **`C`**: color channel — `R`, `G`, or `B`
+- **`S`**: screen number — `1` = bottom screen, `2` = top screen
+- **`B`**: bit index — `0` through `5`
+
+In addition, **`LS`**, **`GSP`**, and **`DCLK`** are labeled on the image.
+
+#### Power / ground notes
+
+- **Ground**: `VGND` near the charging port works well for ground.
+- **Optional DSi power from the Pi**: you can connect **5V** to **`VIN`** (also near the charging port) if you want the Pi to power/charge the DSi.
+
+### Known limitations (artifacting / performance)
+
+- **Artifacting**: due to Raspberry Pi Zero capture limits, some lines may be consistently copied from the line directly above.
+- **Performance**: runs at ~**24 FPS** on a Pi Zero and is not perfectly pixel-accurate. The pixel differences are usually subtle unless you’re looking for them.
+
 ### Pinout
 
 GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserved for UART TX/RX.
@@ -99,19 +127,20 @@ make release
 
 | Target | Output |
 |--------|--------|
-| `make SD_BOOT=1` | `dsi-hdmi.bin` in project root |
+| `make SD_BOOT=1` | `src/dsi-hdmi.bin` |
 | `make release` | `release/kernel7.img` — ready to copy to SD card |
 
 ## Project Structure
 
 ```
 dsi-hdmi-rpi-zero/
-├── dsi-hdmi.c       # Main capture + display loop
-├── gpu-fb.c/h       # Framebuffer / HDMI via mailbox
-├── mbox.c/h         # GPU mailbox
-├── mmu.c, mmu-asm.S # MMU + cache
-├── vm-cache.h       # Cache setup for DMA
-├── armv6-*.h        # ARM coprocessor definitions
+├── src/
+│   ├── dsi-hdmi.c       # Main capture + display loop
+│   ├── gpu-fb.c/h       # Framebuffer / HDMI via mailbox
+│   ├── mbox.c/h         # GPU mailbox
+│   ├── mmu.c, mmu-asm.S # MMU + cache
+│   ├── vm-cache.h       # Cache setup for DMA
+│   └── armv6-*.h        # ARM coprocessor definitions
 ├── libpi/           # Vendored Raspberry Pi bare-metal library
 ├── release/         # SD card files (after make release)
 │   ├── kernel7.img  # Built kernel — copy to SD card

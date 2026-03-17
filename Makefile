@@ -4,10 +4,17 @@
 # Build for SD card boot:  make SD_BOOT=1
 # Build release (SD card files):  make release
 
-PROGS := dsi-hdmi.c
-COMMON_SRC := gpu-fb.c mbox.c mmu.c mmu-asm.S
+PROGS := src/dsi-hdmi.c
+COMMON_SRC := src/gpu-fb.c src/mbox.c src/mmu.c src/mmu-asm.S
 
 OPT_LEVEL = -O2
+
+# Default to "build only" (no Pi required). To auto-install/run, invoke:
+#   make RUN=1
+RUN ?= 0
+
+# Keep build artifacts out of the repo root.
+BUILD_DIR ?= build
 
 # SD card boot: no auto-restart, runs indefinitely
 ifdef SD_BOOT
@@ -37,9 +44,9 @@ KERNEL_IMG := kernel7.img
 
 .PHONY: release release-dir
 release: SD_BOOT=1
-release: dsi-hdmi.bin
+release: src/dsi-hdmi.bin
 	@mkdir -p $(RELEASE_DIR)
-	@cp dsi-hdmi.bin $(RELEASE_DIR)/$(KERNEL_IMG)
+	@cp src/dsi-hdmi.bin $(RELEASE_DIR)/$(KERNEL_IMG)
 	@echo ""
 	@echo "=============================================="
 	@echo "  SD card files ready in: $(RELEASE_DIR)/"
