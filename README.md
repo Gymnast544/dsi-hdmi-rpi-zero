@@ -82,34 +82,39 @@ GPIO 0–3 are avoided (hardware 1.8kΩ pull-ups on PCB). GPIO 14/15 are reserve
 
 Source: [GPIO Pinout Orientation Raspberry Pi Zero W (Stack Exchange)](https://raspberrypi.stackexchange.com/questions/83610/gpio-pinout-orientation-raspberry-pi-zero-w)
 
+Power / ground hookups:
+
+- **GND**: Pi **Pin 6 (GND)** → DSi **`VGND`**
+- **5V (optional)**: Pi **Pin 2 (5V)** → DSi **`VIN`** (to power/charge the DSi from the Pi)
+
 > **Note:** Pin 31 (GPIO 6) is physically wired to **LS** (line sync) on the DSi. The code refers to this signal as GCK — they are the same signal.
 
-| Physical Pin | BCM GPIO | DSi Signal  |
-|-------------|----------|-------------|
-| Pin 7  | GPIO 4  | DCLK        |
-| Pin 8  | GPIO 14 | *(UART TX)* |
-| Pin 10 | GPIO 15 | *(UART RX)* |
-| Pin 11 | GPIO 17 | G[1]        |
-| Pin 12 | GPIO 18 | G[2]        |
-| Pin 13 | GPIO 27 | B[5]        |
-| Pin 15 | GPIO 22 | B[0]        |
-| Pin 16 | GPIO 23 | B[1]        |
-| Pin 18 | GPIO 24 | B[2]        |
-| Pin 19 | GPIO 10 | R[3]        |
-| Pin 21 | GPIO 9  | R[2]        |
-| Pin 22 | GPIO 25 | B[3]        |
-| Pin 23 | GPIO 11 | R[4]        |
-| Pin 24 | GPIO 8  | R[1]        |
-| Pin 26 | GPIO 7  | R[0]        |
-| Pin 29 | GPIO 5  | GSP         |
-| Pin 31 | GPIO 6  | LS          |
-| Pin 32 | GPIO 12 | R[5]        |
-| Pin 33 | GPIO 13 | *(spare)*   |
-| Pin 35 | GPIO 19 | G[3]        |
-| Pin 36 | GPIO 16 | G[0]        |
-| Pin 37 | GPIO 26 | B[4]        |
-| Pin 38 | GPIO 20 | G[4]        |
-| Pin 40 | GPIO 21 | G[5]        |
+| Pi Physical Pin | DSi Signal  |
+|-----------------|-------------|
+| Pin 7           | DCLK        |
+| Pin 8           | *(UART TX)* |
+| Pin 10          | *(UART RX)* |
+| Pin 11          | G[1]        |
+| Pin 12          | G[2]        |
+| Pin 13          | B[5]        |
+| Pin 15          | B[0]        |
+| Pin 16          | B[1]        |
+| Pin 18          | B[2]        |
+| Pin 19          | R[3]        |
+| Pin 21          | R[2]        |
+| Pin 22          | B[3]        |
+| Pin 23          | R[4]        |
+| Pin 24          | R[1]        |
+| Pin 26          | R[0]        |
+| Pin 29          | GSP         |
+| Pin 31          | LS          |
+| Pin 32          | R[5]        |
+| Pin 33          | *(spare)*   |
+| Pin 35          | G[3]        |
+| Pin 36          | G[0]        |
+| Pin 37          | B[4]        |
+| Pin 38          | G[4]        |
+| Pin 40          | G[5]        |
 
 
 
